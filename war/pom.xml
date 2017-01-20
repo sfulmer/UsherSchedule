@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>net.draconia</groupId>
-			<artifactId>usher_schedule_common_jar</artifactId>
+			<artifactId>common_jar</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
