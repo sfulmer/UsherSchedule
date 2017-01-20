@@ -7,7 +7,7 @@ import net.draconia.church.ApplicationContextProvider;
 import net.draconia.church.usherschedule.domain.Schedule;
 
 import net.draconia.church.usherschedule.ui.UsherScheduleMainFrame;
-
+import net.draconia.church.usherschedule.windows.schedule.observers.ScheduleDialogModelListObserver;
 import net.draconia.church.usherschedule.windows.schedule.ui.model.ScheduleDialogModel;
 
 import net.draconia.ui.listdetails.ListDetailsDialog;
@@ -84,6 +84,8 @@ public class ScheduleDialog extends ListDetailsDialog<Schedule>
 			mObjDialogModel = ((ScheduleDialogModel)(getBean(ScheduleDialogModel.class)));
 		else
 			mObjDialogModel = objDialogModel;
+		
+		mObjDialogModel.addObserver((ScheduleDialogModelListObserver)(getBean(ScheduleDialogModelListObserver.class)));
 	}
 	
 }

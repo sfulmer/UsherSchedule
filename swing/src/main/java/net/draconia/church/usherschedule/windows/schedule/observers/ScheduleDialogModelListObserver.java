@@ -7,7 +7,9 @@ import net.draconia.church.usherschedule.windows.schedule.ui.model.ScheduleListT
 import net.draconia.ui.listdetails.observers.DialogModelListObserver;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ScheduleDialogModelListObserver extends DialogModelListObserver<Schedule>
 {
 	private static final long serialVersionUID = 6892303553165797057L;
