@@ -10,7 +10,7 @@ import net.draconia.church.usherschedule.dao.ScheduleDAO;
 
 import net.draconia.church.usherschedule.domain.Schedule;
 
-@Service
+@Service("scheduleService")
 public class ScheduleServiceImpl implements ScheduleService
 {
 	private static final long serialVersionUID = 7109058519103650656L;

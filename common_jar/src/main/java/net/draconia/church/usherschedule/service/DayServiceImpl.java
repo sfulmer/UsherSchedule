@@ -10,7 +10,7 @@ import net.draconia.church.usherschedule.dao.DayDAO;
 import net.draconia.church.usherschedule.domain.Day;
 import net.draconia.church.usherschedule.domain.Schedule;
 
-@Service
+@Service("dayService")
 public class DayServiceImpl implements DayService
 {
 	private static final long serialVersionUID = 5238326547612706014L;
