@@ -13,7 +13,6 @@ import net.draconia.ui.listdetails.actions.Edit;
 import net.draconia.ui.listdetails.listeners.TableSelectionListener;
 
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

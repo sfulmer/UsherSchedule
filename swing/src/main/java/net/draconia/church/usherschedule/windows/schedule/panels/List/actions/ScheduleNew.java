@@ -18,6 +18,7 @@ public class ScheduleNew extends New<Schedule>
 	public void actionPerformed(final ActionEvent objActionEvent)
 	{
 		getModel().setModel(null);
+		getModel().setEditing(true);
 	}
 	
 	@Autowired
