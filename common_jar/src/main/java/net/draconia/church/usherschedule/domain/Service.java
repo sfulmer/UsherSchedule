@@ -42,6 +42,11 @@ public class Service extends Observable implements Cloneable, Serializable
 	public Service()
 	{ }
 	
+	public Service(final Day objDay)
+	{
+		setDay(objDay);
+	}
+	
 	public boolean addPerson(final Person objPerson, final Integer iCommunionPosition, final Integer iUsherPosition)
 	{
 		boolean bReturnValue = getPersonsInternal().add(new ServicePerson(this, objPerson, iCommunionPosition, iUsherPosition));
@@ -93,6 +98,11 @@ public class Service extends Observable implements Cloneable, Serializable
 			return(false);
 	}
 	
+	public Day getDay()
+	{
+		return(mObjDay);
+	}
+	
 	public Integer getId()
 	{
 		return(miId);
@@ -124,6 +134,14 @@ public class Service extends Observable implements Cloneable, Serializable
 		notifyObservers();
 		
 		return(bReturnValue);
+	}
+	
+	public void setDay(final Day objDay)
+	{
+		mObjDay = objDay;
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void setId(final Integer iId)

@@ -40,6 +40,11 @@ public class Day extends Observable implements Cloneable, Serializable
 	public Day()
 	{ }
 	
+	public Day(final Schedule objSchedule)
+	{
+		setSchedule(objSchedule);
+	}
+	
 	public boolean addService(final Service objService)
 	{
 		boolean bReturnValue = getServicesInternal().add(objService);
@@ -60,7 +65,7 @@ public class Day extends Observable implements Cloneable, Serializable
 	
 	public Object clone()
 	{
-		Day objClone = new Day();
+		Day objClone = new Day(getSchedule());
 		
 		if(getId() == null)
 			objClone.setId(null);
@@ -105,6 +110,11 @@ public class Day extends Observable implements Cloneable, Serializable
 		return(miId);
 	}
 	
+	public Schedule getSchedule()
+	{
+		return(mObjSchedule);
+	}
+	
 	public List<Service> getServices()
 	{
 		return(Collections.unmodifiableList(getServicesInternal()));
@@ -142,5 +152,10 @@ public class Day extends Observable implements Cloneable, Serializable
 		
 		setChanged();
 		notifyObservers();
+	}
+	
+	public void setSchedule(final Schedule objSchedule)
+	{
+		mObjSchedule = objSchedule;
 	}
 }
