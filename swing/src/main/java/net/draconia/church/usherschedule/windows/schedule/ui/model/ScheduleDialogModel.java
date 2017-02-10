@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class ScheduleDialogModel extends DialogModel<Schedule>
 {
 	private static final long serialVersionUID = -3506613773355957424L;
-	;
+	
 	@Autowired
 	private ScheduleService mObjScheduleService;
 	
