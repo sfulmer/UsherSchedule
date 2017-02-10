@@ -23,9 +23,6 @@ public class DayDAOImpl implements DayDAO
 	@Autowired
 	private SessionFactory mObjSessionFactory;
 	
-	public DayDAOImpl()
-	{ }
-	
 	public Day getById(final int iId)
 	{
 		Day objDay;
