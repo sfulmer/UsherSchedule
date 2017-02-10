@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import javax.annotation.PostConstruct;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -34,6 +35,7 @@ import net.draconia.ui.listdetails.EnablablePanel;
 import net.draconia.ui.listdetails.actions.Apply;
 import net.draconia.ui.listdetails.actions.Cancel;
 import net.draconia.ui.listdetails.actions.Save;
+import net.draconia.ui.listdetails.model.DetailsPanelModel;
 import net.draconia.ui.listdetails.observers.DirtyObserver;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +56,22 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 	private JLabel mLblId, mLblName;
 	private JTextField mTxtId, mTxtName;
 	
+	private ScheduleDayPanel mPnlDays;
+	
 	public ScheduleDetailsPanel()
 	{
 		super(new BorderLayout(5, 5));
+	}
+	
+	protected void addModelObservers()
+	{
+		String[] sArrFields = new String[] {"Id", "Name"};
+		JTextComponent[] txtArrFields = new JTextComponent[] {getIdField(), getNameField()};
+		
+		getModel().addObserver(new DirtyObserver<Schedule>(getApplyAction(), getSaveAction()));
+		getModel().addObserver(new ScheduleDetailsEditingObserver(this));
+		getModel().addPropertyChangeListener(new ScheduleDetailsFieldBindingEditingChangeListener(sArrFields, txtArrFields));
+		getModel().addObserver(((ScheduleDetailsModelObserver)(getBean(ScheduleDetailsModelObserver.class))));
 	}
 	
 	protected ApplicationContextProvider getApplicationContextProvider()
@@ -87,6 +102,14 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 		return(getApplicationContextProvider().getApplicationContext());
 	}
 	
+	protected ScheduleDayPanel getDaysPanel()
+	{
+		if(mPnlDays == null)
+			setDaysPanel((ScheduleDayPanel)(getBean(ScheduleDayPanel.class)));
+		
+		return(mPnlDays);
+	}
+	
 	protected JPanel getFieldsPanel()
 	{
 		EnablablePanel pnlFields = new EnablablePanel(new GridBagLayout());
@@ -108,6 +131,11 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 		
 		objConstraints.gridx++;
 		pnlFields.add(getNameField(), objConstraints);
+
+		objConstraints.gridwidth = 2;
+		objConstraints.gridx = 0;
+		objConstraints.gridy++;
+		pnlFields.add(getDaysPanel(), objConstraints);
 		
 		return(pnlFields);
 	}
@@ -131,6 +159,14 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 	protected JLabel getIdLabel()
 	{
 		return(mLblId);
+	}
+	
+	public DetailsPanelModel<Schedule> getModel()
+	{
+		if(super.getModel() == null)
+			setModel((ScheduleDetailsPanelModel)(getBean(ScheduleDetailsPanelModel.class)));
+		
+		return(super.getModel());
 	}
 	
 	protected JTextField getNameField()
@@ -181,12 +217,28 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 		super.setButtonsPanel(pnlButtons);
 		
 		getButtonsPanel().setButtons(new Action[] {getApplyAction(), getSaveAction(), getCancelAction()});
+		
+		getButtonsPanel().setEnabled(isEnabled());
+		
+		for(JButton btn : getButtonsPanel().getButtons())
+			btn.setEnabled(false);
 	}
 	
 	@Autowired
 	protected void setCancelAction(ScheduleCancel actCancel)
 	{
 		super.setCancelAction(actCancel);
+	}
+	
+	@Autowired
+	protected void setDaysPanel(final ScheduleDayPanel pnlDays)
+	{
+		if(pnlDays == null)
+			mPnlDays = ((ScheduleDayPanel)(getBean(ScheduleDayPanel.class)));
+		else
+			mPnlDays = pnlDays;
+		
+		mPnlDays.setSchedule(getModel().getWorkingModel());
 	}
 	
 	@Autowired
@@ -217,15 +269,7 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 	@Autowired
 	public void setModel(final ScheduleDetailsPanelModel objModel)
 	{
-		String[] sArrFields = new String[] {"Id", "Name"};
-		JTextComponent[] txtArrFields = new JTextComponent[] {getIdField(), getNameField()};
-		
 		super.setModel(objModel);
-		
-		getModel().addObserver(new DirtyObserver<Schedule>(getApplyAction(), getSaveAction()));
-		getModel().addObserver(new ScheduleDetailsEditingObserver(this));
-		getModel().addPropertyChangeListener(new ScheduleDetailsFieldBindingEditingChangeListener(sArrFields, txtArrFields));
-		getModel().addObserver(((ScheduleDetailsModelObserver)(getBean(ScheduleDetailsModelObserver.class))));
 	}
 	
 	@Autowired

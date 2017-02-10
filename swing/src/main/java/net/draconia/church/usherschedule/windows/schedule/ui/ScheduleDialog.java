@@ -29,7 +29,7 @@ public class ScheduleDialog extends ListDetailsDialog<Schedule>
 	@Autowired
 	public ScheduleDialog(final UsherScheduleMainFrame wndOwner)
 	{
-		super("Schedule Details...", wndOwner, ModalityType.DOCUMENT_MODAL);
+		super("Schedule", wndOwner, ModalityType.DOCUMENT_MODAL);
 	}
 	
 	protected ApplicationContextProvider getApplicationContextProvider()
