@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 import java.util.Observable;
 
-import javax.persistence.Entity;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Table;
-
-@Entity
-@Table(name="ServicePerson")
+@Component
 public class ServicePerson extends Observable implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = -5664408907998589372L;

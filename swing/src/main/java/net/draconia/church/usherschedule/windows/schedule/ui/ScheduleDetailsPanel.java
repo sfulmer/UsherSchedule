@@ -10,6 +10,8 @@ import java.awt.Insets;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.annotation.PostConstruct;
 import javax.swing.Action;
@@ -270,6 +272,19 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 	public void setModel(final ScheduleDetailsPanelModel objModel)
 	{
 		super.setModel(objModel);
+		
+		getModel().addPropertyChangeListener(new PropertyChangeListener()
+		{	
+			public void propertyChange(PropertyChangeEvent objPropertyChangeEvent)
+			{
+				if(objPropertyChangeEvent.getNewValue().equals(true))
+				{
+				setEnabled(true);
+				getNameField().requestFocusInWindow();
+				}
+			}
+		});
+		
 	}
 	
 	@Autowired

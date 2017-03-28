@@ -7,33 +7,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import org.springframework.stereotype.Component;
 
 @Component
-@Entity
-@Table(name="Schedule")
 public class Schedule extends Observable implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 3305423744998883321L;
 	
-	@Column(columnDefinition="integer", name="Id", nullable=false, unique=true)
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer miId;
-	
-	@Column(columnDefinition="varchar", insertable=true, length=150, name="ScheduleName", nullable=false, unique=false, updatable=true)
-	private String msName;
-	
-	@OneToMany(mappedBy="mObjSchedule")
 	private List<Day> mLstDays;
+	private String msName;
 	
 	public Schedule()
 	{ }
