@@ -1,6 +1,7 @@
 package net.draconia.church.usherschedule.windows.day.panels.Service.actions;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 import javax.swing.JTable;
 
@@ -45,7 +46,7 @@ public class DayServiceRemove extends Remove<Service>
 		return(mObjService);
 	}
 
-	protected void removeSubcomponent() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+	protected void removeSubcomponent() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, SQLException
 	{
 		getService().remove(getSelectedService());
 	}

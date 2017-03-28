@@ -1,6 +1,6 @@
 package net.draconia.church.usherschedule.windows.schedule.panels.List.listeners;
 
-import net.draconia.church.ApplicationContextProvider;
+import net.draconia.ApplicationContextProvider;
 
 import net.draconia.church.usherschedule.domain.Schedule;
 import net.draconia.church.usherschedule.windows.schedule.panels.List.actions.ScheduleDelete;

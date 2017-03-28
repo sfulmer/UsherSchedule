@@ -1,40 +1,24 @@
 package net.draconia.church.usherschedule.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Observable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="Day")
 public class Day extends Observable implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = -6846377352600685777L;
 	
-	@Column(columnDefinition="integer", insertable=true, name="ScheduleDate", nullable=false, updatable=true)
 	private Date mDtDate;
-	
-	@Column(columnDefinition="integer", name="Id", nullable=false, unique=true)
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Id
 	private Integer miId;
-	
-	@OneToMany(mappedBy="mObjDay")
 	private List<Service> mLstServices;
 	
-	@Column(name="Schedule")
-	@JoinColumn(name="Schedule")
+	@JsonIgnore
 	private Schedule mObjSchedule;
 	
 	public Day()

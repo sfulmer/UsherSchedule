@@ -1,5 +1,7 @@
 package net.draconia.church.usherschedule.windows.schedule.ui;
 
+import net.draconia.ApplicationContextProvider;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -17,8 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
-
-import net.draconia.church.ApplicationContextProvider;
 
 import net.draconia.church.usherschedule.domain.Schedule;
 

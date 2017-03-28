@@ -1,6 +1,7 @@
 package net.draconia.church.usherschedule.windows.day.ui.model;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -49,18 +50,25 @@ public class DayListTableModel extends ListTableModel<Day> implements Serializab
 	
 	public Object getValueAt(final int iRowIndex, final int iColumnIndex)
 	{
-		Day objRow = getRow(iRowIndex);
-		
-		switch(iColumnIndex)
+		try
 			{
-			case 0:
-				return(objRow.getId());
-			case 1:
-				return(objRow.getDate());
-			case 2:
-				return(objRow.getServices().size());
-			default:
-				return(null);
+			Day objRow = getRow(iRowIndex);
+			
+			switch(iColumnIndex)
+				{
+				case 0:
+					return(objRow.getId());
+				case 1:
+					return(objRow.getDate());
+				case 2:
+					return(objRow.getServices().size());
+				default:
+					return(null);
+				}
+			}
+		catch(SQLException objSQLException)
+			{
+			return(null);
 			}
 	}
 	

@@ -1,5 +1,6 @@
 package net.draconia.church.usherschedule.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +27,22 @@ public class ScheduleServiceImpl implements ScheduleService
 		return(mObjDAO);
 	}
 	
-	public Schedule getById(final int iId)
+	public Schedule getById(final int iId) throws SQLException
 	{
 		return(getDAO().getById(iId));
 	}
 
-	public List<Schedule> list()
+	public List<Schedule> list() throws SQLException
 	{
 		return(getDAO().list());
 	}
 	
-	public void remove(final Schedule objSchedule)
+	public void remove(final Schedule objSchedule) throws SQLException
 	{
 		getDAO().remove(objSchedule);
 	}
 	
-	public Schedule save(final Schedule objSchedule)
+	public Schedule save(final Schedule objSchedule) throws SQLException
 	{
 		return(getDAO().save(objSchedule));
 	}

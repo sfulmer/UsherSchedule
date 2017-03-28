@@ -1,5 +1,6 @@
 package net.draconia.church.usherschedule.windows.schedule.ui.model;
 
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,17 +24,17 @@ public class ScheduleDialogModel extends DialogModel<Schedule>
 	public ScheduleDialogModel()
 	{ }
 	
- 	public boolean addSchedule(final Schedule objSchedule)
+ 	public boolean addSchedule(final Schedule objSchedule) throws SQLException
 	{
 		return(addModelType(objSchedule));
 	}
 	
-	public boolean addSchedules(final Collection<Schedule> collSchedules)
+	public boolean addSchedules(final Collection<Schedule> collSchedules) throws SQLException
 	{
 		return(addModelTypes(collSchedules));
 	}
 	
-	public Schedule create()
+	public Schedule create() throws SQLException
 	{
 		Schedule objSchedule = new Schedule();
 		
@@ -42,7 +43,7 @@ public class ScheduleDialogModel extends DialogModel<Schedule>
 		return(objSchedule);
 	}
 	
-	public List<Schedule> getSchedules()
+	public List<Schedule> getSchedules() throws SQLException
 	{
 		return(getModelList());
 	}
@@ -52,27 +53,27 @@ public class ScheduleDialogModel extends DialogModel<Schedule>
 		return(mObjScheduleService);
 	}
 	
-	protected List<Schedule> listDAO()
+	protected List<Schedule> listDAO() throws SQLException
 	{
 		return(getScheduleService().list());
 	}
 	
-	protected void removeDAO(final Schedule objSchedule)
+	protected void removeDAO(final Schedule objSchedule) throws SQLException
 	{
 		getScheduleService().remove(objSchedule);
 	}
 	
-	public boolean removeSchedule(final Schedule objSchedule)
+	public boolean removeSchedule(final Schedule objSchedule) throws SQLException
 	{
 		return(removeModelType(objSchedule));
 	}
 	
-	public boolean removeSchedules(final Collection<Schedule> collSchedules)
+	public boolean removeSchedules(final Collection<Schedule> collSchedules) throws SQLException
 	{
 		return(removeModelTypes(collSchedules));
 	}
 	
-	protected void saveDAO(final Schedule objSchedule)
+	protected void saveDAO(final Schedule objSchedule) throws SQLException
 	{
 		getScheduleService().save(objSchedule);
 	}

@@ -1,5 +1,7 @@
 package net.draconia.church.usherschedule.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -7,36 +9,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="Service")
 public class Service extends Observable implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 7214970852431246879L;
 	
-	@Column(columnDefinition="integer", insertable=true, name="Day", nullable=false, unique=false, updatable=true)
+	@JsonIgnore
 	private Day mObjDay;
-	
-	@Column(columnDefinition="integer", name="Id", nullable=false, unique=true)
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Id
 	private Integer miId;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="ServicePerson", joinColumns=@JoinColumn(name="PersonId"), inverseJoinColumns=@JoinColumn(name="ServiceId"))
 	private List<ServicePerson> mLstPerson;
-	
-	@Column(columnDefinition="varchar", insertable=true, length=150, name="ServiceLabel", nullable=false, unique=false, updatable=true)
 	private String msLabel;
 	
 	public Service()

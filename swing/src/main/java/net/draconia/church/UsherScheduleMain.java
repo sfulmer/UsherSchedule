@@ -12,7 +12,7 @@ import net.draconia.listeners.SpringContextShutdownHook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class UsherScheduleMain implements Runnable
 {
@@ -27,7 +27,8 @@ public class UsherScheduleMain implements Runnable
 	{
 		if(mObjApplicationContext == null)
 			{
-			mObjApplicationContext = new ClassPathXmlApplicationContext("Beans.xml");
+			mObjApplicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+			//mObjApplicationContext = new ClassPathXmlApplicationContext("Beans.xml");
 			
 			Runtime.getRuntime().addShutdownHook(new Thread(new SpringContextShutdownHook(mObjApplicationContext)));
 			}

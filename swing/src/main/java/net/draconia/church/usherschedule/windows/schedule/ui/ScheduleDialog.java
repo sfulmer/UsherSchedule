@@ -1,8 +1,8 @@
 package net.draconia.church.usherschedule.windows.schedule.ui;
 
-import javax.annotation.PostConstruct;
+import net.draconia.ApplicationContextProvider;
 
-import net.draconia.church.ApplicationContextProvider;
+import javax.annotation.PostConstruct;
 
 import net.draconia.church.usherschedule.domain.Schedule;
 

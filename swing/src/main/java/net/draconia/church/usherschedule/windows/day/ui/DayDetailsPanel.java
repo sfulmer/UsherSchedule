@@ -14,8 +14,7 @@ import javax.swing.JTextField;
 
 import javax.swing.text.JTextComponent;
 
-import net.draconia.church.ApplicationContextProvider;
-
+import net.draconia.ApplicationContextProvider;
 import net.draconia.church.usherschedule.domain.Day;
 import net.draconia.church.usherschedule.windows.day.panels.Details.actions.DayApply;
 import net.draconia.church.usherschedule.windows.day.panels.Details.actions.DayCancel;

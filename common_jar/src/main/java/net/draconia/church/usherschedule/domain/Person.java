@@ -5,37 +5,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Observable;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 public class Person extends Observable implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = -8342248505188564260L;
 	
-	@Column(columnDefinition="integer", insertable=true, name="EndDate", nullable=true, updatable=true)
-	private Date mDtEnd;
-	
-	@Column(columnDefinition="varchar", insertable=true, length=200, name="FirstName", nullable=false, unique=false, updatable=true)
-	private String msFirstName;
-	
-	@Column(columnDefinition="integer", name="Id", nullable=false, unique=true)
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Id
+	private Date mDtEnd, mDtOrdenation, mDtStart;
 	private Integer miId;
-	
-	@Column(columnDefinition="varchar", insertable=true, length=200, name="LastName", nullable=false, unique=false, updatable=true)
-	private String msLastName;
-	
-	@Column(columnDefinition="integer", insertable=true, name="OrdenationDate", nullable=true, updatable=true)
-	private Date mDtOrdenation;
-	
-	@Column(columnDefinition="integer", insertable=true, name="Individual", nullable=false, unique=false, updatable=true)
 	private Service mObjRequestedService;
-	
-	@Column(columnDefinition="integer", insertable=true, name="StartDate", nullable=true, updatable=true)
-	private Date mDtStart;
+	private String msFirstName, msLastName;
 	
 	public Person()
 	{ }
@@ -113,6 +90,11 @@ public class Person extends Observable implements Cloneable, Serializable
 		return(msLastName);
 	}
 	
+	public Date getOrdenationDate()
+	{
+		return(mDtOrdenation);
+	}
+	
 	public Service getRequestedService()
 	{
 		return(mObjRequestedService);
@@ -153,6 +135,11 @@ public class Person extends Observable implements Cloneable, Serializable
 		
 		setChanged();
 		notifyObservers();
+	}
+	
+	public void setOrdenationDate(final Date dtOrdenation)
+	{
+		mDtOrdenation = dtOrdenation;
 	}
 	
 	public void setRequestedService(final Service objService)

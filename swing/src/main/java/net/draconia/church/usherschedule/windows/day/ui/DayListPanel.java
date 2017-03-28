@@ -1,12 +1,12 @@
 package net.draconia.church.usherschedule.windows.day.ui;
 
+import net.draconia.ApplicationContextProvider;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.annotation.PostConstruct;
 import javax.swing.BorderFactory;
-
-import net.draconia.church.ApplicationContextProvider;
 
 import net.draconia.church.usherschedule.domain.Day;
 

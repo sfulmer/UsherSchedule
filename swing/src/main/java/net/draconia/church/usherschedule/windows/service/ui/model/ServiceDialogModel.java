@@ -1,5 +1,6 @@
 package net.draconia.church.usherschedule.windows.service.ui.model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import net.draconia.church.usherschedule.domain.Day;
@@ -46,17 +47,17 @@ public class ServiceDialogModel extends DialogModel<Service>
 		return(mObjServiceService);
 	}
 	
-	protected List<Service> listDAO()
+	protected List<Service> listDAO() throws SQLException
 	{
 		return(getServiceService().listServicesInDay(getCurrentDay()));
 	}
 	
-	protected void removeDAO(final Service objService)
+	protected void removeDAO(final Service objService) throws SQLException
 	{
 		getServiceService().remove(objService);
 	}
 	
-	protected void saveDAO(final Service objService)
+	protected void saveDAO(final Service objService) throws SQLException
 	{
 		getServiceService().save(objService);
 	}

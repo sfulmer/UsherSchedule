@@ -7,8 +7,7 @@ import javax.swing.Action;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import net.draconia.church.ApplicationContextProvider;
-
+import net.draconia.ApplicationContextProvider;
 import net.draconia.church.usherschedule.domain.Schedule;
 
 import net.draconia.church.usherschedule.windows.schedule.panels.Details.actions.ScheduleApply;

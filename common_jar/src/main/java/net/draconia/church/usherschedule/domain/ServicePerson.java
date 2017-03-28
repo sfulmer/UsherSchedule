@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 import java.util.Observable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 @Entity
@@ -17,25 +14,10 @@ public class ServicePerson extends Observable implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = -5664408907998589372L;
 	
-	@Column(columnDefinition="integer", insertable=true, name="CommunionPosition", nullable=false, unique=false, updatable=true)
-	private Integer miCommunionPosition;
-	
-	@Column(columnDefinition="integer", name="Id", nullable=false, unique=true)
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Id
-	private Integer miId;
-	
-	@Column(columnDefinition="varchar", insertable=true, length=2000, name="Notes", nullable=false, unique=false, updatable=true)
-	private String msNotes;
-	
-	@Column(columnDefinition="integer", insertable=true, name="Person", nullable=false, unique=false, updatable=true)
+	private Integer miCommunionPosition, miId, miUsherPosition;
 	private Person mObjPerson;
-	
-	@Column(columnDefinition="integer", insertable=true, name="Service", nullable=false, unique=false, updatable=true)
 	private Service mObjService;
-	
-	@Column(columnDefinition="integer", insertable=true, name="UsherPosition", nullable=false, unique=false, updatable=true)
-	private Integer miUsherPosition;
+	private String msNotes;
 	
 	public ServicePerson()
 	{ }

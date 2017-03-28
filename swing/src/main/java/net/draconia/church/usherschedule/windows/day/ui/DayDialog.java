@@ -1,7 +1,6 @@
 package net.draconia.church.usherschedule.windows.day.ui;
 
-import net.draconia.church.ApplicationContextProvider;
-
+import net.draconia.ApplicationContextProvider;
 import net.draconia.church.usherschedule.domain.Day;
 import net.draconia.church.usherschedule.windows.day.ui.model.DayDialogModel;
 import net.draconia.church.usherschedule.windows.schedule.ui.ScheduleDialog;

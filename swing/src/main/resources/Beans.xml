@@ -7,29 +7,18 @@
 							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
-	<context:component-scan base-package="net.draconia.church.usherschedule" />
+	<!-- <context:component-scan base-package="net.draconia.church.usherschedule" /> -->
 	
-	<bean class="net.draconia.church.ApplicationContextProvider" id="applicationContextProvider" />
+	<!-- <bean class="net.draconia.church.ApplicationContextProvider" id="applicationContextProvider" /> -->
 	
-	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
-		<property name="driverClassName" value="org.sqlite.JDBC" />
-		<property name="url" value="jdbc:sqlite:Schedule.db" />
-	</bean>
+	<!-- <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/newgoshucc" />
+	    <property name="username" value="newgoshucc" />
+	    <property name="password" value="G0d 1$ sT!lL L1$t3n!nG!" />
+	</bean> -->
 	
-	<bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="hibernate5SessionFactory">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="net.draconia.church.usherschedule.domain" />
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">com.enigmabridge.hibernate.dialect.SQLiteDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
-			</props>
-		</property>
-	</bean>
-	
-	<bean class="javax.swing.JTextField" id="ScheduleDetailsId">
+	<!-- <bean class="javax.swing.JTextField" id="ScheduleDetailsId">
 		<constructor-arg index="0">
 			<value type="int">30</value>
 		</constructor-arg>
@@ -39,14 +28,14 @@
 			</bean>
 		</property>
 		<property name="editable" value="false" />
-	</bean>
+	</bean> -->
 	
-	<bean class="javax.swing.JLabel" id="ScheduleDetailsIdLabel">
+	<!-- <bean class="javax.swing.JLabel" id="ScheduleDetailsIdLabel">
 		<constructor-arg index="0" value="Id:" />
 		<property name="labelFor" ref="ScheduleDetailsId" />
-	</bean>
+	</bean> -->
 	
-	<bean class="javax.swing.JTextField" id="ScheduleDetailsName">
+	<!-- <bean class="javax.swing.JTextField" id="ScheduleDetailsName">
 		<constructor-arg index="0">
 			<value type="int">30</value>
 		</constructor-arg>
@@ -56,18 +45,18 @@
 			</bean>
 		</property>
 		<property name="enabled" value="false" />
-	</bean>
+	</bean> -->
 	
-	<bean class="javax.swing.JLabel" id="ScheduleDetailsNameLabel">
+	<!-- <bean class="javax.swing.JLabel" id="ScheduleDetailsNameLabel">
 		<constructor-arg index="0" value="Name:" />
 		<property name="labelFor" ref="ScheduleDetailsName" />
-	</bean>
+	</bean> -->
 	
-	<bean class="net.draconia.ui.listdetails.ButtonsPanel" id="ScheduleMainButtonPanel" />
+	<!-- <bean class="net.draconia.ui.listdetails.ButtonsPanel" id="ScheduleMainButtonPanel" />
 	<bean class="net.draconia.ui.listdetails.ButtonsPanel" id="ScheduleListButtonPanel" />
-	<bean class="net.draconia.ui.listdetails.ButtonsPanel" id="ScheduleDetailButtonPanel" />
+	<bean class="net.draconia.ui.listdetails.ButtonsPanel" id="ScheduleDetailButtonPanel" /> -->
 	
-	<bean class="javax.swing.JTable" id="tblScheduleList" />
+	<!-- <bean class="javax.swing.JTable" id="tblScheduleList" />
 	<bean class="javax.swing.JScrollPane" id="ScheduleListScrollPane">
 		<constructor-arg index="0" ref="tblScheduleList" />
 		<constructor-arg index="1">
@@ -85,9 +74,9 @@
 	<bean class="net.draconia.church.usherschedule.windows.schedule.panels.Day.models.DayScheduleComboBoxModel" id="DayScheduleComboBoxModel" />
 	<bean class="javax.swing.JComboBox" id="DayScheduleComboBox">
 		<constructor-arg index="0" ref="DayScheduleComboBoxModel" />
-	</bean>
+	</bean> -->
 	
-	<bean class="javax.swing.JTextField" id="DayDetailsId">
+	<!-- <bean class="javax.swing.JTextField" id="DayDetailsId">
 		<constructor-arg index="0">
 			<value type="int">30</value>
 		</constructor-arg>
@@ -97,9 +86,9 @@
 			</bean>
 		</property>
 		<property name="editable" value="false" />
-	</bean>
+	</bean> -->
 	
-	<bean class="net.sourceforge.jdatepicker.impl.UtilDateModel" id="dayDateFieldDateModel" />
+	<!-- <bean class="net.sourceforge.jdatepicker.impl.UtilDateModel" id="dayDateFieldDateModel" />
 	<bean class="net.sourceforge.jdatepicker.impl.JDatePickerImpl" id="dayDateField">
 		<constructor-arg index="0">
 			<bean class="net.sourceforge.jdatepicker.impl.JDatePanelImpl">
@@ -109,5 +98,5 @@
 		<constructor-arg index="1">
 			<bean class="net.draconia.church.DateLabelFormatter" />
 		</constructor-arg>
-	</bean>
+	</bean> -->
 </beans>

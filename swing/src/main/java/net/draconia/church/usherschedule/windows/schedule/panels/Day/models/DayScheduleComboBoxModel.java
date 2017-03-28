@@ -1,6 +1,7 @@
 package net.draconia.church.usherschedule.windows.schedule.panels.Day.models;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,7 @@ import javax.swing.event.ListDataListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import net.draconia.church.ApplicationContextProvider;
-
+import net.draconia.ApplicationContextProvider;
 import net.draconia.church.usherschedule.domain.Schedule;
 
 import net.draconia.church.usherschedule.service.ScheduleService;
@@ -58,7 +58,7 @@ public class DayScheduleComboBoxModel implements ComboBoxModel<Schedule>, Serial
 		return(getApplicationContext().getBean(sBeanName));
 	}
 	
-	protected List<Schedule> getSchedules()
+	protected List<Schedule> getSchedules() throws SQLException
 	{
 		if(mLstSchedules == null)
 			mLstSchedules = getScheduleService().list();
@@ -68,7 +68,16 @@ public class DayScheduleComboBoxModel implements ComboBoxModel<Schedule>, Serial
 
 	public Schedule getElementAt(final int iIndex)
 	{
-		return(getSchedules().get(iIndex));
+		try
+			{
+			return(getSchedules().get(iIndex));
+			}
+		catch(SQLException objSQLException)
+			{
+			objSQLException.printStackTrace(System.err);
+			
+			return(null);
+			}
 	}
 	
 	protected List<ListDataListener> getListDataListeners()
@@ -86,7 +95,16 @@ public class DayScheduleComboBoxModel implements ComboBoxModel<Schedule>, Serial
 	
 	public int getSize()
 	{
-		return(getSchedules().size());
+		try
+			{
+			return(getSchedules().size());
+			}
+		catch(SQLException objSQLException)
+			{
+			objSQLException.printStackTrace(System.err);
+			
+			return(0);
+			}
 	}
 	
 	public void removeListDataListener(final ListDataListener objListDataListener)
@@ -99,11 +117,29 @@ public class DayScheduleComboBoxModel implements ComboBoxModel<Schedule>, Serial
 		if(miSelectedIndex == -1)
 			return(null);
 		else
-			return(getSchedules().get(miSelectedIndex));
+			try
+				{
+				return(getSchedules().get(miSelectedIndex));
+				}
+			catch(SQLException objSQLException)
+				{
+				objSQLException.printStackTrace(System.err);
+				
+				return(null);
+				}
 	}
 	
 	public void setSelectedItem(final Object objSchedule)
 	{
-		miSelectedIndex = getSchedules().indexOf(objSchedule);
+		try
+			{
+			miSelectedIndex = getSchedules().indexOf(objSchedule);
+			}
+		catch(SQLException objSQLException)
+			{
+			objSQLException.printStackTrace(System.err);
+			
+			miSelectedIndex = -1;
+			}
 	}
 }

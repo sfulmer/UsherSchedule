@@ -1,11 +1,12 @@
 package net.draconia.church.usherschedule.windows.schedule.ui.model;
 
-import net.draconia.church.ApplicationContextProvider;
-
+import net.draconia.ApplicationContextProvider;
 import net.draconia.church.usherschedule.domain.Schedule;
 
 import net.draconia.ui.listdetails.model.DialogModel;
 import net.draconia.ui.listdetails.model.ListTableModel;
+
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -93,16 +94,25 @@ public class ScheduleListTableModel extends ListTableModel<Schedule>
 	
 	public Object getValueAt(final int iRow, final int iColumn)
 	{
-		Schedule objSchedule = getRow(iRow);
-		
-		switch(iColumn)
+		try
 			{
-			case 0:
-				return(objSchedule.getId());
-			case 1:
-				return(objSchedule.getName());
-			default:
-				return(null);
+			Schedule objSchedule = getRow(iRow);
+			
+			switch(iColumn)
+				{
+				case 0:
+					return(objSchedule.getId());
+				case 1:
+					return(objSchedule.getName());
+				default:
+					return(null);
+				}
+			}
+		catch(SQLException objSQLException)
+			{
+			objSQLException.printStackTrace(System.err);
+			
+			return(null);
 			}
 	}
 	

@@ -1,5 +1,7 @@
 package net.draconia.church.usherschedule.windows.day.ui;
 
+import net.draconia.ApplicationContextProvider;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,8 +10,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-
-import net.draconia.church.ApplicationContextProvider;
 
 import net.draconia.church.usherschedule.domain.Day;
 import net.draconia.church.usherschedule.domain.Schedule;

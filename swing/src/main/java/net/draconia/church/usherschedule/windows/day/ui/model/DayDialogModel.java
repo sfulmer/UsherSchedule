@@ -1,6 +1,7 @@
 package net.draconia.church.usherschedule.windows.day.ui.model;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 import net.draconia.church.usherschedule.domain.Day;
@@ -65,12 +66,12 @@ public class DayDialogModel extends DialogModel<Day> implements Serializable
 		return(getCurrentSchedule().getDays());
 	}
 	
-	protected void removeDAO(final Day objDay)
+	protected void removeDAO(final Day objDay) throws SQLException
 	{
 		getDayService().remove(objDay);
 	}
 	
-	protected void saveDAO(final Day objDay)
+	protected void saveDAO(final Day objDay) throws SQLException
 	{
 		getDayService().save(objDay);
 	}
