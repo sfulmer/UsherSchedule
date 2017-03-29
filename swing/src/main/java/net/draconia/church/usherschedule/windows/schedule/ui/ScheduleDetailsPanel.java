@@ -28,6 +28,7 @@ import net.draconia.church.usherschedule.windows.schedule.panels.Details.actions
 import net.draconia.church.usherschedule.windows.schedule.panels.Details.actions.ScheduleCancel;
 import net.draconia.church.usherschedule.windows.schedule.panels.Details.actions.ScheduleSave;
 import net.draconia.church.usherschedule.windows.schedule.panels.Details.listeners.ScheduleDetailsFieldBindingEditingChangeListener;
+import net.draconia.church.usherschedule.windows.schedule.panels.Details.observers.ScheduleDetailsDirtyObserver;
 import net.draconia.church.usherschedule.windows.schedule.panels.Details.observers.ScheduleDetailsEditingObserver;
 import net.draconia.church.usherschedule.windows.schedule.panels.Details.observers.ScheduleDetailsModelObserver;
 import net.draconia.church.usherschedule.windows.schedule.ui.model.ScheduleDetailsPanelModel;
@@ -39,6 +40,7 @@ import net.draconia.ui.listdetails.actions.Cancel;
 import net.draconia.ui.listdetails.actions.Save;
 import net.draconia.ui.listdetails.model.DetailsPanelModel;
 import net.draconia.ui.listdetails.observers.DirtyObserver;
+import net.draconia.utilities.TextUtilities;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -70,10 +72,10 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 		String[] sArrFields = new String[] {"Id", "Name"};
 		JTextComponent[] txtArrFields = new JTextComponent[] {getIdField(), getNameField()};
 		
-		getModel().addObserver(new DirtyObserver<Schedule>(getApplyAction(), getSaveAction()));
 		getModel().addObserver(new ScheduleDetailsEditingObserver(this));
 		getModel().addPropertyChangeListener(new ScheduleDetailsFieldBindingEditingChangeListener(sArrFields, txtArrFields));
 		getModel().addObserver(((ScheduleDetailsModelObserver)(getBean(ScheduleDetailsModelObserver.class))));
+		getModel().addObserver(((ScheduleDetailsDirtyObserver)(getBean(ScheduleDetailsDirtyObserver.class))));
 	}
 	
 	protected ApplicationContextProvider getApplicationContextProvider()
@@ -273,15 +275,18 @@ public class ScheduleDetailsPanel extends DetailsPanel<Schedule>
 	{
 		super.setModel(objModel);
 		
+		addModelObservers();
+		
 		getModel().addPropertyChangeListener(new PropertyChangeListener()
 		{	
 			public void propertyChange(PropertyChangeEvent objPropertyChangeEvent)
 			{
 				if(objPropertyChangeEvent.getNewValue().equals(true))
-				{
-				setEnabled(true);
-				getNameField().requestFocusInWindow();
-				}
+					{
+					setEnabled(true);
+					getModel().setModel(null);
+					getNameField().requestFocusInWindow();
+					}
 			}
 		});
 		

@@ -116,6 +116,9 @@ public class Schedule extends Observable implements Cloneable, Serializable
 	{
 		getDaysInternal().clear();
 		getDaysInternal().addAll(lstDays);
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void setId(final Integer iId)

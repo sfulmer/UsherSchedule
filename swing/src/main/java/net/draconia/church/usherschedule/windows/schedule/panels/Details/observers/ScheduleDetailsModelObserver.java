@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import net.draconia.church.usherschedule.domain.Schedule;
 import net.draconia.church.usherschedule.windows.schedule.ui.model.ScheduleDetailsPanelModel;
+import net.draconia.utilities.TextUtilities;
 
 @Component
 public class ScheduleDetailsModelObserver implements Observer, Serializable
@@ -50,6 +51,10 @@ public class ScheduleDetailsModelObserver implements Observer, Serializable
 	{
 		ScheduleDetailsPanelModel objModel = ((ScheduleDetailsPanelModel)(objObservable));
 		Schedule objWorkingModel = objModel.getWorkingModel();
+		TextUtilities objTextUtilites = new TextUtilities();
+		
+		objTextUtilites.setupUnRedoableBoundTextComponent(getIdField(), objWorkingModel, "Id", Integer.class);
+		objTextUtilites.setupUnRedoableBoundTextComponent(getNameField(), objWorkingModel, "Name");
 		
 		if(objWorkingModel.getId() != null)
 			{

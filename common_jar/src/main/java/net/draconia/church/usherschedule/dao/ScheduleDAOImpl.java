@@ -70,8 +70,8 @@ public class ScheduleDAOImpl extends AbstractDAO<Schedule> implements ScheduleDA
 			{
 			if(!objStatement.isClosed())
 				objStatement.close();
-			if(!objConnection.isClosed())
-				objConnection.close();
+			
+			closeConnection();
 			}
 	}
 	
@@ -212,8 +212,8 @@ public class ScheduleDAOImpl extends AbstractDAO<Schedule> implements ScheduleDA
 			{
 			if(!objStatement.isClosed())
 				objStatement.close();
-			if(!objConnection.isClosed())
-				objConnection.close();
+			
+			closeConnection();
 			}
 		
 		return(null);

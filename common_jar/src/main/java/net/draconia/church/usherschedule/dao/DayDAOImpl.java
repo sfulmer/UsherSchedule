@@ -68,7 +68,7 @@ public class DayDAOImpl extends AbstractDAO<Day> implements DayDAO
 		try
 			{
 			objConnection = getDataSource().getConnection();
-			objStatement = objConnection.prepareStatement("create table Day (Id int not null primary key auto_increment, Date date not null, Schedule int not null references Schedule(Id));");
+			objStatement = objConnection.prepareStatement("create table if not exists Day (Id int not null primary key auto_increment, Date date not null, Schedule int not null references Schedule(Id));");
 			
 			objStatement.executeUpdate();
 			}
@@ -254,7 +254,7 @@ public class DayDAOImpl extends AbstractDAO<Day> implements DayDAO
 			objResults = objMetadata.getTables(null, null, "Day", new String[] {"TABLE"});
 			
 			while(objResults.next())
-				if(objResults.getString("TABLE_CAT").equalsIgnoreCase("SQL9158326") || objResults.getString("TABLE_SCHEMA").equalsIgnoreCase("SQL9158326"))
+				if("SQL9158326".equalsIgnoreCase(objResults.getString("TABLE_CAT")) || "SQL9158326".equalsIgnoreCase(objResults.getString("TABLE_SCHEM")))
 					return(objResults.getString("TABLE_NAME").equalsIgnoreCase("Day"));
 			
 			return(false);
